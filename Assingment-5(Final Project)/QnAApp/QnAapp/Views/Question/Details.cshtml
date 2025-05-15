@@ -1,0 +1,20 @@
+﻿@model QnAApp.Models.Question
+
+<h2>@Model.Title</h2>
+<p>@Model.Body</p>
+<p><small>Posted: @Model.PostedAt</small></p>
+
+<h3>Answers</h3>
+<ul>
+    @foreach (var answer in Model.Answers)
+    {
+        <li>@answer.Content - <small>@answer.PostedAt</small></li>
+    }
+</ul>
+
+<h4>Add Answer</h4>
+<form asp-action="AddAnswer" method="post">
+    <input type="hidden" name="QuestionId" value="@Model.Id" />
+    <textarea name="Content" class="form-control"></textarea>
+    <button type="submit" class="btn btn-primary">Post Answer</button>
+</form>
